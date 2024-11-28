@@ -7,7 +7,7 @@ const client = new MercadoPagoConfig({
 
 const app = express()
 const PORT = 3000
-app.use(cors('*'))
+app.use(cors("*"))
 app.use(express.json())
 app.get("/", (req, res) => res.send("Server para pagos online con MercadoPago"))
 app.post("/create-preference", async (req, res) => {
@@ -44,3 +44,5 @@ app.post("/create-preference", async (req, res) => {
 app.listen(PORT, (err) => {
     console.log(err ? `Falla al lanzar el servidor: ${err.message}` : `Servidor corre en http://127.0.0.1:${PORT}`)
 })
+
+
