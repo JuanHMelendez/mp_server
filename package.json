@@ -1,0 +1,19 @@
+{
+  "name": "mp-server",
+  "version": "1.0.0",
+  "description": "server para implementar pagos online con MP",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch --env-file ./.env server.js" ,
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Melendez",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mercadopago": "^2.0.15"
+  }
+}
