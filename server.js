@@ -2,26 +2,21 @@ import express from 'express'
 import cors from 'cors'
 import { MercadoPagoConfig, Preference } from 'mercadopago'
 const client = new MercadoPagoConfig({
-    accessToken: process.env.MP_ACCESS_TOKEN
+    accessToken: "APP_USR-4330173678414112-112511-c6bfbb2c6911a03fe98bf824c6e016e1-430440798"
 })
 
 const app = express()
-const PORT = 3000
+const PORT = 3100
 app.use(cors("*"))
 app.use(express.json())
 app.get("/", (req, res) => res.send("Server para pagos online con MercadoPago"))
 app.post("/create-preference", async (req, res) => {
-    const { title, quantity, unit_price } = req.body
+    const { items } = req.body
+    
+    
     try {
         const body = {
-            items: [
-                {
-                    title: title,
-                    quantity: Number(quantity),
-                    unit_price: Number(unit_price),
-                    currency_id: 'ARS'
-                }
-            ],
+            items,
             // back_urls: {
             //     success: "https:/endpointParaSuccess",
             //     failure: "https:/endpointParaFailure",
@@ -34,7 +29,7 @@ app.post("/create-preference", async (req, res) => {
         res.json({ id: result.id })
 
     } catch (error) {
-        console.error(err.message)
+        console.error(error.message)
         res.status(500).json({ message: 'Error al crear el pago 😡' })
 
     }
